@@ -1,9 +1,12 @@
 package com.acleciocruz.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,5 +24,9 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+    @JsonIgnore
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders;
 
 }
